@@ -1,1 +1,3 @@
-# CTF_writeups
+ # CTF writeups
+
+ This is my repo for CTF writeups in which I document my methods of solving cybersecurity puzzles. It may serve as a resource for others who try to solve these challenges and need some assistance or other perspective. The writeups are written in markdown for a clean view that also enables copy pasting certain commands if needed. CTFs are placed in folders based on platform that they are on.

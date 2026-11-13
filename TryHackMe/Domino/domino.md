@@ -22,9 +22,9 @@ Nmap done: 1 IP address (1 host up) scanned in 9.39 seconds
 
 SSH is hardly an entry point, so let's visit the site present on port 80. We are welcomed by login site to an employee portal. First thing that we can notice is that we already know the pattern of the usernames used, also we can see employers names by clicking on Our Team button. This enables us to create usernames file for future potential attacks.
 
-![login](login.png)
+![login](images/login.png)
 
-![team](our_team.png)
+![team](images/our_team.png)
 
 The forgot password site does not look like an attack vector, however it works by providing username, which are known so it is not a good idea and they should have asked for an email instead.
 
@@ -81,7 +81,7 @@ Finished
 
 We have discovered a lot of interesting places, although access to most of them is forbidden or not visible for us except to default locations accesible for everyone like index.php, team.php etc. There is however one location that is publically available and should not be - /backup.
 
-![backup](backup.png)
+![backup](images/backup.png)
 
 README.txt:
 ```
@@ -165,7 +165,7 @@ $ hydra -L users.txt -P /usr/share/wordlists/rockyou.txt 10.114.183.92 http-post
 
 It is a better idea to use custom wordlist based on the stuff we would find on the site but first I tried rockyou.txt.txt and I was succesful. Three users had word 'password' as their password.
 
-![sarah](sarah_johnson.png)
+![sarah](images/sarah_johnson.png)
 
 **We can obtain first flag by taking advantage of an IDOR vulnerability in My Profile API (/api/users/profile.php?id=). We are logged in as user 3 but we can change the id parameter to see other users. Our flag is in the notes of user 1**.
 
@@ -179,7 +179,7 @@ We can try getting a JWT by visiting /api/auth/token.php. When we do so we indee
 
 Now it is unable to view files like config.php through /api/files.php?name= endpoint because we need token with administrative privileges. We can paste the JWT into [JWT Debugger](https://www.jwt.io/) and change our role to admin and see if it will work. If it does that means the signature so the third part of the JWT is not being verified at all which creates a crucial vulnerability in the app.
 
-![token](token.png)
+![token](images/token.png)
 
 Now when we send a request (for example using Burp or cURL) with our changed token it is possible to view config.php:
 
